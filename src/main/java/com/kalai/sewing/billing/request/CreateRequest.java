@@ -1,6 +1,7 @@
 package com.kalai.sewing.billing.request;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CreateRequest {
 	private Long billId;
@@ -11,7 +12,8 @@ public class CreateRequest {
 	private LocalDateTime billDate;
 	private Double cGstvalue;
 	private Double gstValue;
-	private double totalAmount;
+	private Double totalAmount;
+	private List<BillItemRequest> billItems;
 	public Long getBillId() {
 		return billId;
 	}
@@ -60,17 +62,25 @@ public class CreateRequest {
 	public void setGstValue(Double gstValue) {
 		this.gstValue = gstValue;
 	}
-	public double getTotalAmount() {
+	public Double getTotalAmount() {
 		return totalAmount;
 	}
-	public void setTotalAmount(double totalAmount) {
+	public void setTotalAmount(Double totalAmount) {
 		this.totalAmount = totalAmount;
+	}
+	
+	
+	public List<BillItemRequest> getBillItems() {
+		return billItems;
+	}
+	public void setBillItems(List<BillItemRequest> billItems) {
+		this.billItems = billItems;
 	}
 	@Override
 	public String toString() {
 		return "CreateRequest [billId=" + billId + ", cName=" + cName + ", addRess=" + addRess + ", phoneNumber="
 				+ phoneNumber + ", eMail=" + eMail + ", billDate=" + billDate + ", cGstvalue=" + cGstvalue
-				+ ", gstValue=" + gstValue + ", totalAmount=" + totalAmount + "]";
+				+ ", gstValue=" + gstValue + ", totalAmount=" + totalAmount + ", billItems=" + billItems + "]";
 	}
 	
 	

@@ -1,38 +1,67 @@
 package com.kalai.sewing.billing.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.springframework.lang.NonNull;
 
-@Entity
-public class CreateBillEntity {
+import com.sun.istack.NotNull;
 
+@Entity
+@Table(name = "Bills")
+public class CreateBillEntity implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	private Long billId;
-	@NonNull
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long billNumber;
+	@NotNull
+	private String billIdentifier;
+	@NotNull
 	private String cName;
-	@NonNull
+	@NotNull
 	private String Address;
-	@NonNull
+	@NotNull
 	private String phoneNumber;
-	@NonNull
+	@NotNull
 	private String eMail;
-	@NonNull
+	@NotNull
 	private LocalDateTime billDate;
-	@NonNull
+	@NotNull
 	private Double cGstvalue;
-	@NonNull
+	@NotNull
 	private Double gstValue;
-	private double totalvalue;
+	@NotNull
+	private Double totalvalue;
+	@NotNull
+	@OneToMany(mappedBy = "billEntity",cascade = CascadeType.ALL)
+	private List<BillValueEntity> billItems;
 	
-	public Long getBillId() {
-		return billId;
+	public Long getBillNumber() {
+		return billNumber;
 	}
-	public void setBillId(Long billId) {
-		this.billId = billId;
+	public void setBillNumber(Long billNumber) {
+		this.billNumber = billNumber;
+	}
+	public String getBillIdentifier() {
+		return billIdentifier;
+	}
+	public void setBillIdentifier(String billIdentifier) {
+		this.billIdentifier = billIdentifier;
 	}
 	public String getcName() {
 		return cName;
@@ -76,12 +105,20 @@ public class CreateBillEntity {
 	public void setGstValue(Double gstValue) {
 		this.gstValue = gstValue;
 	}
-	public double getTotalvalue() {
+	public Double getTotalvalue() {
 		return totalvalue;
 	}
-	public void setTotalvalue(double totalvalue) {
+	public void setTotalvalue(Double totalvalue) {
 		this.totalvalue = totalvalue;
 	}
+	public List<BillValueEntity> getBillItems() {
+		return billItems;
+	}
+	public void setBillItems(List<BillValueEntity> billItems) {
+		this.billItems = billItems;
+	}
+
 	
 	
+
 }
