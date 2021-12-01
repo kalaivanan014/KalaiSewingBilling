@@ -1,32 +1,19 @@
 package com.kalai.sewing.billing.response;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class CreateResponse {
 
 	private String billNumber;
 	private String billStatus;
+	private String billIdentifier;
 
-	public String getBillNumber() {
-		return billNumber;
-	}
 
-	public void setBillNumber(String billNumber) {
-		this.billNumber = billNumber;
-	}
-
-	public String getBillStatus() {
-		return billStatus;
-	}
-
-	public void setBillStatus(String billStatus) {
-		this.billStatus = billStatus;
-	}
-
-	@Override
-	public String toString() {
-		return "CreateResponse [billNumber=" + billNumber + ", billStatus=" + billStatus + ", getBillNumber()="
-				+ getBillNumber() + ", getBillStatus()=" + getBillStatus() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
 
 	
 	

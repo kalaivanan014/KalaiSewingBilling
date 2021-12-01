@@ -1,78 +1,37 @@
 package com.kalai.sewing.billing.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+@Getter
+@Setter
+@ToString
 public class CreateRequest {
+	@JsonIgnore
 	private Long billId;
+	@JsonProperty("BillNumber")
+	private Long BillNumber;
+	@JsonProperty("CustomerName")
 	private String cName;
+	@JsonProperty("Address")
 	private String addRess;
+	@JsonProperty("PhoneNumber")
 	private String phoneNumber;
+	@JsonProperty("E-mail")
 	private String eMail;
-	private LocalDateTime billDate;
+	@JsonProperty("BillDate")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	private LocalDate billDate;
+	@JsonProperty("cGstvalue")
 	private Double cGstvalue;
+	@JsonProperty("GstValue")
 	private Double gstValue;
+	@JsonProperty("TotalAmount")
 	private double totalAmount;
-	public Long getBillId() {
-		return billId;
-	}
-	public void setBillId(Long billId) {
-		this.billId = billId;
-	}
-	public String getcName() {
-		return cName;
-	}
-	public void setcName(String cName) {
-		this.cName = cName;
-	}
-	public String getAddRess() {
-		return addRess;
-	}
-	public void setAddRess(String addRess) {
-		this.addRess = addRess;
-	}
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	public String geteMail() {
-		return eMail;
-	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
-	public LocalDateTime getBillDate() {
-		return billDate;
-	}
-	public void setBillDate(LocalDateTime billDate) {
-		this.billDate = billDate;
-	}
-	public Double getcGstvalue() {
-		return cGstvalue;
-	}
-	public void setcGstvalue(Double cGstvalue) {
-		this.cGstvalue = cGstvalue;
-	}
-	public Double getGstValue() {
-		return gstValue;
-	}
-	public void setGstValue(Double gstValue) {
-		this.gstValue = gstValue;
-	}
-	public double getTotalAmount() {
-		return totalAmount;
-	}
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
-	@Override
-	public String toString() {
-		return "CreateRequest [billId=" + billId + ", cName=" + cName + ", addRess=" + addRess + ", phoneNumber="
-				+ phoneNumber + ", eMail=" + eMail + ", billDate=" + billDate + ", cGstvalue=" + cGstvalue
-				+ ", gstValue=" + gstValue + ", totalAmount=" + totalAmount + "]";
-	}
-	
-	
-
 }
