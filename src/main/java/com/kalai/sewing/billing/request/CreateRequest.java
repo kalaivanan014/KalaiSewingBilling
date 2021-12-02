@@ -9,29 +9,33 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
 public class CreateRequest {
 	@JsonIgnore
 	private Long billId;
-	@JsonProperty("BillNumber")
+	@JsonProperty("billNumber")
 	private Long BillNumber;
-	@JsonProperty("CustomerName")
+	@JsonProperty("customerName")
 	private String cName;
-	@JsonProperty("Address")
+	@JsonProperty("address")
 	private String addRess;
-	@JsonProperty("PhoneNumber")
+	@JsonProperty("phoneNumber")
 	private String phoneNumber;
-	@JsonProperty("E-mail")
+	@JsonProperty("e-mail")
 	private String eMail;
-	@JsonProperty("BillDate")
+	@JsonProperty("billDate")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private LocalDate billDate;
-	@JsonProperty("cGstvalue")
+	@JsonProperty("cgstvalue")
 	private Double cGstvalue;
-	@JsonProperty("GstValue")
+	@JsonProperty("gstValue")
 	private Double gstValue;
-	@JsonProperty("TotalAmount")
+	@JsonProperty("totalAmount")
 	private double totalAmount;
+	@JsonProperty("items")
+	private List<Item> items;
 }
