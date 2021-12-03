@@ -13,17 +13,18 @@ import org.springframework.lang.NonNull;
 @Entity
 @Getter
 @Setter
+@Table(name = "BILLS_MASTER")
 public class CreateBillEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "BILLID")
+	@Column(name = "BILL_ID")
 	private Long billId;
 	@NonNull
-	@Column(name = "BILLNUMBER")
+	@Column(name = "BILL_NUMBER")
 	private Long billNmber;
 	@NonNull
-	@Column(name = "CUSTOMERNAME")
+	@Column(name = "CUSTOMER_NAME")
 	private String customerName;
 	@NonNull
 	@Column(name = "ADDRESS")
@@ -35,16 +36,16 @@ public class CreateBillEntity {
 	@Column(name = "EMAIL")
 	private String eMail;
 	@NonNull
-	@Column(name = "BILLDATE")
+	@Column(name = "BILL_DATE")
 	private LocalDate billDate;
 	@NonNull
-	@Column(name = "CGSTVALUEE")
+	@Column(name = "CGST_VALUE")
 	private Double cGstvalue;
 	@NonNull
-	@Column(name = "GSTVALUE")
+	@Column(name = "GST_VALUE")
 	private Double gstValue;
 	@NonNull
-	@Column(name = "TOTALAMOUNT")
+	@Column(name = "TOTAL_AMOUNT")
 	private double totalAmount;
 	@NonNull
 	@OneToMany(mappedBy = "id",cascade = CascadeType.ALL)

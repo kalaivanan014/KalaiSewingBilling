@@ -1,6 +1,9 @@
 package com.kalai.sewing.billing.service;
 
 import com.kalai.sewing.billing.entity.ItemsEntity;
+import com.kalai.sewing.billing.entity.PriceMasterEntity;
+import com.kalai.sewing.billing.repo.PriceMasterRepository;
+import com.kalai.sewing.billing.request.CreatePriceMasterRequest;
 import com.kalai.sewing.billing.request.Item;
 import com.kalai.sewing.billing.response.CreateResponse;
 import org.apache.logging.slf4j.SLF4JLogger;
@@ -24,6 +27,8 @@ public class BillingService implements IBillingService {
 	
 	@Autowired
 	BillingRepository billRepo;
+	@Autowired
+	PriceMasterRepository priceMaterRepo;
 	
 	public CreateResponse addBillvalue(CreateRequest cRequest) {
 		logger.info(cRequest.toString());
@@ -58,9 +63,25 @@ public class BillingService implements IBillingService {
 		
 		
 	}
-/*
-adding each item to entity from request
- */
+
+	@Override
+	public void addProduct(CreatePriceMasterRequest requestData) {
+		logger.info(requestData.toString());
+			PriceMasterEntity entity = new PriceMasterEntity();
+			entity.setConsumerPrice(requestData.getConsumePrice());
+			entity.setBrandName(requestData.getBrandName());
+			entity.setDealerPrice(requestData.getDealerPrice());
+			entity.setModelType(requestData.getModelType());
+			entity.setMrp(requestData.getMrpValue());
+			entity.setPurchasePrice(requestData.getPurchasePrice());
+			entity.setModelName(requestData.getModelName());
+			entity.setModelCode(requestData.getModelCode());
+			priceMaterRepo.save(entity);
+	}
+
+	/*
+    adding each item to entity from request
+     */
 	private ItemsEntity getItems(Item item){
 		ItemsEntity entity= new ItemsEntity();
 		entity.setAmount(item.getAmount());
