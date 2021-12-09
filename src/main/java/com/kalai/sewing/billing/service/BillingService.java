@@ -6,7 +6,7 @@ import com.kalai.sewing.billing.repo.PriceMasterRepository;
 import com.kalai.sewing.billing.request.CreatePriceMasterRequest;
 import com.kalai.sewing.billing.request.Item;
 import com.kalai.sewing.billing.response.CreateResponse;
-import org.apache.logging.slf4j.SLF4JLogger;
+import com.kalai.sewing.billing.response.SearchPriceMasterResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import com.kalai.sewing.billing.request.CreateRequest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BillingService implements IBillingService {
@@ -77,6 +78,28 @@ public class BillingService implements IBillingService {
 			entity.setModelName(requestData.getModelName());
 			entity.setModelCode(requestData.getModelCode());
 			priceMaterRepo.save(entity);
+	}
+
+	@Override
+	public List<SearchPriceMasterResponse> searchProduct(String searchString) {
+		Optional<List<PriceMasterEntity>> dataRetrieved = Optional.ofNullable(priceMaterRepo.findBySeacrhString(searchString));
+		List<SearchPriceMasterResponse> response = new ArrayList<>();
+		if (dataRetrieved.isPresent()) {
+			dataRetrieved.get().forEach(e -> response.add(getProducts(e)));
+		}
+		return response;
+	}
+
+	private SearchPriceMasterResponse getProducts(PriceMasterEntity e){
+		SearchPriceMasterResponse resValue = new SearchPriceMasterResponse();
+		resValue.setMrpValue(e.getMrp());
+		resValue.setConsumePrice(e.getConsumerPrice());
+		resValue.setBrandName(e.getBrandName());
+		resValue.setDealerPrice(e.getDealerPrice());
+		resValue.setModelCode(e.getModelCode());
+		resValue.setModelType(e.getModelType());
+		resValue.setModelName(e.getModelName());
+		return resValue;
 	}
 
 	/*
